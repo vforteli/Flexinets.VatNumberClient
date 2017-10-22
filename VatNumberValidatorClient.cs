@@ -32,7 +32,7 @@ namespace Flexinets.VatNumberClient
                 return new VatNumberResponse { valid = false, parsedVatNumber = vatnumber, message = "Vat number too short" };
             }
 
-            var regex = new Regex("[a-z]{2}.*", RegexOptions.IgnoreCase);
+            var regex = new Regex("[a-z]{2}.{8,11}", RegexOptions.IgnoreCase);
             if (!regex.IsMatch(vatnumber))
             {
                 return new VatNumberResponse { valid = false, parsedVatNumber = vatnumber, message = "Please enter VAT Number in international format" };
@@ -58,9 +58,24 @@ namespace Flexinets.VatNumberClient
 
     public class VatNumberResponse
     {
+        /// <summary>
+        /// True if the Vat number was successfully validated
+        /// </summary>
         public Boolean valid;
+
+        /// <summary>
+        /// A parsed version of the Vat number
+        /// </summary>
         public String parsedVatNumber;
+
+        /// <summary>
+        /// Status or error message
+        /// </summary>
         public String message;
+
+        /// <summary>
+        /// If successful, returns the name of the entity associated with the Vat number
+        /// </summary>
         public String name;
     }
 }
