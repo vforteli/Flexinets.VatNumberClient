@@ -51,12 +51,14 @@ namespace Flexinets.VatNumberClient
                 {
                     return new VatNumberValidationResponse { valid = true, result = VatNumberValidationResult.EuVatNumberValid, parsedVatNumber = vatnumber, name = response.Body.name };
                 }
+                return new VatNumberValidationResponse { valid = false, result = VatNumberValidationResult.EuVatNumberInvalid, parsedVatNumber = vatnumber };
             }
             catch (Exception ex)
             {
                 _log.Warn($"invalid input to vat client: {vatnumber}", ex);
+                return new VatNumberValidationResponse { valid = false, result = VatNumberValidationResult.EuVatNumberUnknown, parsedVatNumber = vatnumber };
             }
-            return new VatNumberValidationResponse { valid = false, result = VatNumberValidationResult.EuVatNumberInvalid, parsedVatNumber = vatnumber };
+
         }
 
 
