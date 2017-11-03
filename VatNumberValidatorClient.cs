@@ -28,7 +28,7 @@ namespace Flexinets.VatNumberClient
             vatnumber = TrimVatNumber(vatnumber);
 
             // Check if this appears to be an EU vat number
-            if (!EuCountryCodes.GetEuCountryCodes().Contains(vatnumber.Substring(0, 2)))    // yes yes, it is more efficient to check if the code exists...
+            if (vatnumber.Length <= 2 || !EuCountryCodes.GetEuCountryCodes().Contains(vatnumber.Substring(0, 2)))    // yes yes, it is more efficient to check if the code exists...
             {
                 return new VatNumberValidationResponse { valid = true, result = VatNumberValidationResult.NonEuVatNumber };
             }
