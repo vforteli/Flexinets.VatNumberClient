@@ -48,8 +48,8 @@ namespace Flexinets.VatNumberClient
             {
                 var response = await vatClient.checkVatAsync(vatnumber.Substring(0, 2), vatnumber.Substring(2));
                 if (response.Body.valid)
-                {
-                    return new VatNumberValidationResponse { valid = true, result = VatNumberValidationResult.EuVatNumberValid, parsedVatNumber = vatnumber, name = response.Body.name };
+                {                    
+                    return new VatNumberValidationResponse { valid = true, result = VatNumberValidationResult.EuVatNumberValid, parsedVatNumber = vatnumber, name = response.Body.name, checkVatResponseBody = response.Body };
                 }
                 return new VatNumberValidationResponse { valid = false, result = VatNumberValidationResult.EuVatNumberInvalid, parsedVatNumber = vatnumber };
             }

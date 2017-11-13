@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Flexinets.VatNumberClient.EU;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 
@@ -31,5 +32,8 @@ namespace Flexinets.VatNumberClient
         /// If successful, returns the name of the entity associated with the Vat number
         /// </summary>
         public String name { get; set; }
+
+
+        public checkVatResponseBody checkVatResponseBody { get; set; }
     }
 }
